@@ -1,11 +1,32 @@
 {% load static %}
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<!DOCTYPE html>
+
+<html lang ="eng">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+    <title>mundiMoto</title>
+</head>
+<body>
+    <div class="container">
+      <div class="top">
+        
+      </div>
+        <div class="left">
+            Descubre de forma online como conseguir una moto para ir a cualquier sitio.
+            Registrate en nuestra web para obterner más información y formar parte de nuestra red de mundimoto
+        </div>
+        <div class="right">
+            <button class="login">
+            Login
+            </button>
+            <button class="register">
+            Register
+            </button>
+      </div>
+    </div>
+</body>
+
+</html>
