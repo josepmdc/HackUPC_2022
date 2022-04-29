@@ -16,8 +16,6 @@ import os
 #BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_DIR =os.path.join(BASE_DIR,'mundimoto','static')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -28,7 +26,6 @@ SECRET_KEY = 'gf3xda=nd81!y5bz&q!i9#)n3%^1na3+klz)js73o&v_(8zz=2'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -117,6 +114,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_DIR =os.path.join(BASE_DIR,'mundimoto','static')
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
