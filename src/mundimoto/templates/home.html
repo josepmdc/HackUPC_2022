@@ -8,8 +8,13 @@
   <div class="row">
     <div class="col">
       <div class="titulo">
+        <a href="{% url 'logout' %}" style="float:right; ">Log out</a>
         <h1>WHERE DO YOU WANT TO GO ? </h1>
+
+      
+
       </div>
+   
     </div>
 
     <div class="w-100"></div>
@@ -67,7 +72,8 @@
   <a class="start_trip">START YOUR TRIP</a>
 </div>
 
-
-
+<div>
+  <a href="{% url 'index' %}" class="previous round">INICIO</a>
+</div>
 
 {% endblock %}

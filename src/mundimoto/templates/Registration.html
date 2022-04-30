@@ -3,32 +3,24 @@
 
 {% block container %}
 
-
-<div class="overlay" style="margin-left:480px; margin-top:300px">
-
-   
-        <h2>Hello, Friend!</h2>
-        <p>Enter your personal details and start journey with us</p>
+        <div class="login-form">
+            <form  id="formulari-sign" action="{% url 'registrar' %}" method="POST">
+                {% csrf_token%}
+                {{user_form.as_p}}
+                {% if messages %}
+                {% for message in messages %}
+                 <script>
         
-
-    <form action="{% url 'registrar' %}" method="POST" >
-        {% csrf_token%}
-        {{user_form.as_p}}
-        {% if messages %}
-        {% for message in messages %}
-         <script>
-
-
-                        alert('{{message}}')
-
-              </script>
-         {% endfor %}
-
-        {% endif %}
-        <button type="submit" class="btn btn-success">Register</button>
-    </form>
-
-    <a class="button" href="{%url 'login' %}">Sign In></a>
-</div>
+        
+                                alert('{{message}}')
+        
+                      </script>
+                 {% endfor %}
+        
+                {% endif %}
+            <input class="button is-link" type="submit" name="" value="sign up" style="margin-left: 220px;
+            margin-bottom: 20px;">
+            </form>
+        </div>
 
 {% endblock %}

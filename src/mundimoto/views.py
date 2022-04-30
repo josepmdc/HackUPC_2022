@@ -8,14 +8,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+import logging
 
 # Create your views here.
 
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
 
+
+    
+def handle_not_found(request,exception):
+    return render(request,'error.html')
+
+    
 
 def index(request):
     latest_question_list = ["1. asdf", "2. asdf", "3. asdf"]
@@ -26,8 +33,10 @@ def index(request):
 
 
 def home(request):
-<<<<<<< HEAD
     print(Brands.objects.all()[0].name)
+    logger = logging.getLogger('django')
+
+    logger.info('here goes your message')
     return render(request, 'home.html')
 
 def explanation(request):
@@ -38,15 +47,11 @@ def Login(request):
 
     return render(request, "Login.html")
 
-=======
-    return render(request, 'home.html')
-
->>>>>>> 838aa53be7685b6b26e080070feefb9071ec928b
 
 def Login(request):
     return render(request, "login.html")
 
-@login_required
+
 def formBike(request):
     find_form = forms.FindMotorbike()
 
