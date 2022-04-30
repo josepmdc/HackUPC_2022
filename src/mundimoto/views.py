@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from mundimoto.models import Brands
 from . import forms
 
 
@@ -9,7 +11,10 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def home(request):
+    print(Brands.objects.all()[0].name)
+
     return render(request, 'home.html')
 
 
@@ -21,5 +26,4 @@ def formBike(request):
     if find_form.is_valid():
         contact = find_form.save()
 
-
-    return render(request, "home.html",{})
+    return render(request, "home.html", {})
