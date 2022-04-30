@@ -36,6 +36,8 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
 class Logs(models.Model):
     contact_id = models.ForeignKey(Clients, on_delete=models.CASCADE)
     bike_id = models.ForeignKey(Versions, on_delete=models.CASCADE)
@@ -48,3 +50,12 @@ class Logs(models.Model):
     final_at = models.DateTimeField()
     total_km = models.FloatField()
     fuel_level = models.FloatField()
+
+class RangeBike(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cat = models.CharField(max_length=255)
+    low = models.IntegerField()
+    high = models.IntegerField()
+
+
+
