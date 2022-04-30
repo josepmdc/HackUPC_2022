@@ -46,7 +46,10 @@ label{
   margin-top:200px;
   
 }
+body{
 
+  background-color:transparent;
+}
 button {
   border-radius: 3px;
   border: 1px solid #FF4B2B;
@@ -267,4 +270,42 @@ button:active {
   top:0;
   left:0;
   z-index: -1;
+}
+
+.item1 { grid-area: header; }
+.item2 { grid-area: right; }
+.item3 { grid-area: left; }
+.item4 { grid-area: right2; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header right right right'
+    'left left left right2 right2 right2'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  background-color: white;
+  border-radius: 3px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+
+.item1{
+margin-top:20px;
+  height:100px;
+  font-size: 22px;
+}
+.item4{
+
+  margin-top:100px;
+}
+.item3{
+  font-size: 22px;
+  margin-top:100px;
+}
+.item5{
+  text-align: center;
+  
 }

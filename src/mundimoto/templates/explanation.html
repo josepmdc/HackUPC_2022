@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<h1>What do we do?</h1>
+
+<div class="grid-container">
+  <div class="item1">
+      <h3>What is mundimoto-sharing?</h3>
+      <p>
+          MundiMoto sharing is a way to make the best of any second hand motorbike. The
+          Do you want to do a far trip? Then choose one of our long km motobikes.
+          Do you feel to move to the beach or around the city? Then choose our city motobikes.
+
+      </p>
+  </div>
+  <div class="item2">
+    {% load static %} <img src="{% static 'images/moto_3.png' %}" alt="image">
+    
+  </div>
+
+    <div class="item3">
+
+        <h3>What type of motorbikes do we have?</h3>
+        <p> 
+            We have many types of motorbikes and we classify them depending on the range they are most comfortable with.
+        </p>
+
+    </div>  
+    <div class="item4">
+        <img src="{% static 'images/tipus.png' %}" alt="image">
+        
+    </div>
+
+  <div class="item5">
+    <a href="https://mundimoto.com/es"> Click here to check MundiMoto</a>
+   
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

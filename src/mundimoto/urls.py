@@ -8,5 +8,6 @@ urlpatterns = [
    # path('main', views.formBike, name='main'),
     path('login', views.Login, name='login'),
     path('user_login', views.user_login, name='user_login'),
+    path('explanation', views.explanation, name='explanation'),
     path('registrar', views.Register, name='registrar'),
 ]

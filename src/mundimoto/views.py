@@ -28,16 +28,19 @@ def index(request):
 
 def home(request):
     print(Brands.objects.all()[0].name)
-
     return render(request, 'home.html')
 
+def explanation(request):
+    return render(request, 'explanation.html')
+
+    
 def Login(request):
 
     return render(request, "Login.html")
 
 
 
-
+@login_required
 def formBike(request):
     find_form = forms.FindMotorbike()
 
