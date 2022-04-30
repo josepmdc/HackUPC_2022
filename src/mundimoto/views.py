@@ -7,3 +7,6 @@ def index(request):
         'latest_question_list': latest_question_list,
     }
     return render(request, 'index.html', context)
+
+def home(request):
+    return render(request, 'home.html')
