@@ -66,10 +66,13 @@
 
 
 
+{%if request.user.is_authenticated%}
+  <div>
+    <a href="{% url 'TIMER' %}" class="previous round">START TRIP</a>
+  </div>
+{% endif %}
 
-<div class="trip">
-
-  <a class="start_trip">START YOUR TRIP</a>
+ 
 </div>
 
 <div>

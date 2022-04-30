@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gf3xda=nd81!y5bz&q!i9#)n3%^1na3+klz)js73o&v_(8zz=2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 # Application definition
 
@@ -124,3 +124,7 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = '/first_app/user_login'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51KcVt0LF5Gdjxt6YMwLOYuBZlz4nwnS9TRSMC9JYqErwT04EUeltwOc2z5eXdPhk7jR79NsB8bmGMJ0hPaq4bOZQ006CmFXqxE'
+STRIPE_SECRET_KEY = 'sk_test_51KcVt0LF5Gdjxt6YI3faW0ReSWXLRAnyBVZFIKq488IjThdhGbPpqEDQNpReycp6i6FC8jskCKmx8mkBWnudZ92q00C8xlYvHR'
+STRIPE_PRICE_ID = 'price_1KuLRcLF5Gdjxt6Y2VSiShHl'
+STRIPE_ENDPOINT_SECRET = 'whsec_cf74b44e9929c2ad9a3119b1d73f25f8a41b9332780c5a5c7ec75012ee22c84f'

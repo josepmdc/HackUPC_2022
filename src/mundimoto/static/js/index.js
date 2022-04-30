@@ -1,17 +1,41 @@
 window.onload = function() {
     console.log("Hello World");
-}function initMap(){
-    navigator.geolocation.getCurrentPosition(success, error);
 }
 
-function success(pos) {
-    var crd = pos.coords;
-    latitud = crd.latitude
-    longitud = crd.longitude   
-    document.getElementById("latitud").innerHTML = latitud 
-    document.getElementById("longitud").innerHTML = longitud 
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: {lat: latitud, lng: longitud},
-        zoom: 14
+// new
+// Get Stripe publishable key
+fetch("/config/")
+.then((result) => { return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+});
+
+console.log("Sanity check!");
+
+// Get Stripe publishable key
+fetch("/config/")
+.then((result) => { return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+
+  // new
+  // Event handler
+  let submitBtn = document.querySelector("#submitBtn12");
+  if (submitBtn !== null) {
+    submitBtn.addEventListener("click", () => {
+    // Get Checkout Session ID
+    fetch("/create-checkout-session/")
+      .then((result) => { return result.json(); })
+      .then((data) => {
+        console.log(data);
+        // Redirect to Stripe Checkout
+        return stripe.redirectToCheckout({sessionId: data.sessionId})
+      })
+      .then((res) => {
+        console.log(res);
+      });
     });
-};
+  }
+});
