@@ -2,24 +2,82 @@
 
 {% block container %}
 
-<div class="top">
 
-</div>
-<div class="left">
-    <div class="container">
-        <h2>Choose your filters</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Product</button>
-        </form>
-    </div>
-  </div>
-  <div class="column is-half">
-    Second column
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="titulo">
+      <h1>WHERE DO YOU WANT TO GO ? </h1>
+    </div></div>
+  
+    <div class="w-100"></div>
+    <div class="col">
+      <div class="bloque">
+      
+        <div class="row">
+      
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <div class="control">
+                <button class="button is-link">Submit</button>
+              </div>
+              </form>
+              
+            </div>
+      
+      
+      
+        </div>
+      </div>
+    <div class="col">
+      <div class="right-path" style="margin-top: 200px;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>    </div>
+        </div>
+      </div>
 </div>
+
+
+
+
+
+
+<div class="trip">
+  
+  <a class="start_trip">START YOUR TRIP</a>
+</div>
+
+
 
 
 {% endblock %}

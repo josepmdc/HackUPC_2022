@@ -33,7 +33,7 @@ def home(request):
 
 def Login(request):
 
-    return render(request, "login.html")
+    return render(request, "Login.html")
 
 
 
@@ -87,7 +87,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('building'))
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return HttpResponse("ACCOUNT NOT ACTIVE")
         else:

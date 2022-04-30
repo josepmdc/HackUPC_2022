@@ -7,7 +7,6 @@ class FindMotorbike(models.Model):
     Destination = models.CharField(blank=True, max_length=250)
     Fuel = models.CharField(blank=True, max_length=10000)
 
-
 class Brands(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
