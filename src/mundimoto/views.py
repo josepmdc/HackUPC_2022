@@ -48,7 +48,6 @@ def formBike(request):
     return render(request, "home.html",{'form':find_form})
 
 
-<<<<<<< HEAD
 def Register(request):
     user_form_ = forms.UserForm()
 
@@ -96,6 +95,3 @@ def user_login(request):
             return HttpResponse("invalid login details")
     else:
         return render(request, 'home.html', {})
-=======
-    return render(request, "home.html", {})
->>>>>>> 096552b5359043044f6965a3044e6cf24bec2267
