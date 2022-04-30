@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang ="eng">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <title>mundiMoto</title>
+</head>
+<body>
+    <div class="container">
+        {% block container %}{% endblock %}
+    </div>
+</body>
+
+</html>
