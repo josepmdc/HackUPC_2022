@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from mundimoto.models import Brands
 from . import forms
 from mundimoto.forms import FindMotorbike
 from django.urls import reverse
@@ -23,7 +25,10 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def home(request):
+    print(Brands.objects.all()[0].name)
+
     return render(request, 'home.html')
 
 def Login(request):
@@ -43,6 +48,7 @@ def formBike(request):
     return render(request, "home.html",{'form':find_form})
 
 
+<<<<<<< HEAD
 def Register(request):
     user_form_ = forms.UserForm()
 
@@ -90,3 +96,6 @@ def user_login(request):
             return HttpResponse("invalid login details")
     else:
         return render(request, 'home.html', {})
+=======
+    return render(request, "home.html", {})
+>>>>>>> 096552b5359043044f6965a3044e6cf24bec2267
