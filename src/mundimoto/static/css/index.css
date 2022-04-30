@@ -20,7 +20,7 @@ h1{
   top: 0px;
   right: 0px;
   bottom: 0px;
-  background: rgba(255,255,255,.8);
+  background: rgba(255,255,255,0.6);
   z-index: 999;
 }
 
@@ -55,7 +55,7 @@ button {
   border: 1px solid #FF4B2B;
   background: none;
   color: #4a4a4a;
-  font-size: 12px;
+  font-size: 15px;
   padding: 0.4em 1em;
   transition: transform 0.8s ease-in;
   cursor: pointer;
@@ -272,6 +272,7 @@ button:active {
   z-index: -1;
 }
 
+<<<<<<< HEAD
 .item1 { grid-area: header; }
 .item2 { grid-area: right; }
 .item3 { grid-area: left; }
@@ -309,3 +310,13 @@ margin-top:20px;
   text-align: center;
   
 }
+=======
+.normal { color: black; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 22px; font-weight: 300; 
+  line-height: 58px; 
+  text-align: center;
+  margin: 0 0 58px; }
+
+
+>>>>>>> 838aa53be7685b6b26e080070feefb9071ec928b

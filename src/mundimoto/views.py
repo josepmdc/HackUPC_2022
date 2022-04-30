@@ -1,8 +1,7 @@
 from django.shortcuts import render
 
-from mundimoto.models import Brands
 from . import forms
-from mundimoto.forms import FindMotorbike
+from mundimoto.models import Brands, Versions
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -27,6 +26,7 @@ def index(request):
 
 
 def home(request):
+<<<<<<< HEAD
     print(Brands.objects.all()[0].name)
     return render(request, 'home.html')
 
@@ -38,7 +38,13 @@ def Login(request):
 
     return render(request, "Login.html")
 
+=======
+    return render(request, 'home.html')
 
+>>>>>>> 838aa53be7685b6b26e080070feefb9071ec928b
+
+def Login(request):
+    return render(request, "login.html")
 
 @login_required
 def formBike(request):
@@ -48,7 +54,9 @@ def formBike(request):
         find_form = forms.FindMotorbike(data=request.POST)
     if find_form.is_valid():
         find_form.save()
-    return render(request, "home.html",{'form':find_form})
+    brands = Brands.objects.all()
+    bikes = Versions.objects.all()
+    return render(request, "home.html", {'form': find_form, 'brands': brands, 'bikes': bikes})
 
 
 def Register(request):
@@ -73,7 +81,6 @@ def Register(request):
         else:
             print("ERROR")
             messages.error(request, "Username already Exists")
-
 
     else:
         print(request)
