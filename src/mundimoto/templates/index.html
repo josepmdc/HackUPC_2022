@@ -1,26 +1,41 @@
 {% extends "base.html" %}
 
 {% block container %}
-<div class="top">
-
+<div class="titulo1">
+    <br />
+    MundiMoto Renting
 </div>
+
 <div class="left">
     Descubre de forma online como conseguir una moto para ir a cualquier sitio.
-    Registrate en nuestra web para obtener más información y formar parte de nuestra red de mundimoto
-</div>
-<div class="right">
-    <a href="{% url 'login' %}">
-        Login
-    </a>
-    <a href="{% url 'registrar' %}">
-        Register
-    </a>
+    Registrate en nuestra web para obtener más información y formar parte de nuestra red de mundimoto. 
+    <br /><br />
 </div>
 
-<div>
-    <a href="{% url 'home' %}">
-        Start Trip
-    </a>
+
+<div class="center">
+
+    <div class="button btn">
+        <a href="{% url 'login' %}">
+            Login
+        </a>
+    </div>
+
+    <div class="button btn">
+        <a href="{% url 'registrar' %}">
+            Register
+        </a>
+    </div>
+    <br />
+    <br />
 </div>
-<button onclick="initMap()"></button>
+
+<div class="center">
+    <div class="buttonHeader">
+        <a href="{% url 'home' %}">
+            Start Trip
+        </a>
+    </div>
+</div>
+
 {% endblock %}
