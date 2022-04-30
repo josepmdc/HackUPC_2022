@@ -119,3 +119,5 @@ STATIC_DIR =os.path.join(BASE_DIR,'mundimoto','static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+LOGIN_URL = '/first_app/user_login'

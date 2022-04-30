@@ -5,12 +5,17 @@
 <html lang ="eng">
 
 <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3XZFWeXMa15_J77YCZ2GrQ-qZO99Z6LM&callback=initMap&v=weekly"
+    defer
+  ></script>
     <title>mundiMoto</title>
 </head>
 <body>
-    <div class="container">
+    <div class="cont">
         {% block container %}{% endblock %}
     </div>
 </body>

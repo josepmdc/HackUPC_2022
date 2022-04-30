@@ -9,11 +9,18 @@
     Registrate en nuestra web para obterner más información y formar parte de nuestra red de mundimoto
 </div>
 <div class="right">
-    <a href="{% url 'home' %}">
+    <a href="{% url 'login' %}">
         Login
     </a>
-    <button class="register">
+    <a href="{% url 'registrar' %}">
         Register
-    </button>
+    </a>
 </div>
+
+<div>
+    <a href="{% url 'home' %}">
+        Start Trip
+    </a>
+</div>
+<button onclick="initMap()"></button>
 {% endblock %}

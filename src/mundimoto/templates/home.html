@@ -8,19 +8,12 @@
 <div class="left">
     <div class="container">
         <h2>Choose your filters</h2>
-            
-        <form id="trip" action="{% url 'main' %}" method="post">
-            {% csrf_token %}
-            <!--We have to create a view in views.py-->
-            <label for="fname">Address Origins</label>
-            <input type = "text" id ="address"  value = "Barcelona">   
-            <label for="lname">Address Destination</label>
-            <input type = "text" id ="address"  value = "Sabadell">
-            <label for="lname">Fuel</label>
-            <input type="text" id="lname" name="lname" value ="50%"><br><br>
-            <input type="submit" value="Submit">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
         </form>
-      
     </div>
 </div>
 <div class="right">
