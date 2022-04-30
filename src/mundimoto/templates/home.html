@@ -1,5 +1,35 @@
 {% extends "base.html" %}
 
 {% block container %}
-<h1>Home</h1>
+
+<div class="top">
+
+</div>
+<div class="left">
+    <div class="container">
+        <h2>Choose your filters</h2>
+            
+        <form id="trip" action="{% url 'main' %}" method="post">
+            {% csrf_token %}
+            <!--We have to create a view in views.py-->
+            <label for="fname">Address Origins</label>
+            <input type = "text" id ="address"  value = "Barcelona">   
+            <label for="lname">Address Destination</label>
+            <input type = "text" id ="address"  value = "Sabadell">
+            <label for="lname">Fuel</label>
+            <input type="text" id="lname" name="lname" value ="50%"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+      
+    </div>
+</div>
+<div class="right">
+    <button class="login">
+    Login
+    </button>
+    <button class="register">
+    Register
+    </button>
+</div>
+
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import forms
 
 
 def index(request):
@@ -10,3 +11,15 @@ def index(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def formBike(request):
+    find_form = forms.FindMotorbike()
+
+    if request.POST:
+        find_form = forms.FindMotorbike(data=request.POST)
+    if find_form.is_valid():
+        contact = find_form.save()
+
+
+    return render(request, "home.html",{})
