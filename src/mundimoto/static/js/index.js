@@ -22,7 +22,7 @@ fetch("/config/")
 
   // new
   // Event handler
-  let submitBtn = document.querySelector("#submitBtn12");
+  let submitBtn = document.querySelector("#submitBtn");
   if (submitBtn !== null) {
     submitBtn.addEventListener("click", () => {
     // Get Checkout Session ID

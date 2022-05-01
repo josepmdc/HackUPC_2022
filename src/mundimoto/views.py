@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import requests
 import stripe
 from . import forms
-from mundimoto.models import Brands, Clients, Versions
+from mundimoto.models import Brands, Clients, FindMotorbike, Versions
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -14,6 +14,8 @@ import logging
 from django.contrib.auth.models import User  # new
 import urllib.parse
 from mundimoto.models import StripeCustomer  # new
+
+from django.db import connection
 
 # Create your views here.
 
@@ -48,7 +50,9 @@ def create_checkout_session(request):
                     }
                 ]
             )
-            return JsonResponse({'sessionId': checkout_session['id']})
+
+            return redirect(checkout_session.url,code=303)
+            #return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
 
@@ -140,13 +144,16 @@ def formBike(request):
         url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
         response = requests.get(url).json()
 
-        context = {
-            'lat': response[0]["lat"],
-            'lon': response[0]["lon"],
-        }
+
+        address = find_form['Destination'].value()
+        url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
+        response2 = requests.get(url).json()
+
+        #FindMotorbike.objects.raw('INSERT INTO mundimoto_findmotorbike column(lat1, lon1,lat2, lon2) VALUES(response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"] )')
+
         find_form.save()
-    brands = Brands.objects.all()
-    bikes = Versions.objects.all()
+    brands = Brands.objects.filter(name="BMW")
+    bikes = Versions.objects.filter()
     return render(request, "home.html", {'form': find_form, 'brands': brands, 'bikes': bikes})
 
 
@@ -167,7 +174,7 @@ def Register(request):
 
             registered = True
             login(request, user)
-           
+            return  redirect('/create-checkout-session/')
         else:
             print("ERROR")
             messages.error(request, "Username already Exists")

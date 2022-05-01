@@ -6,7 +6,7 @@ from mundimoto.models import FindMotorbike
 class FindMotorbike(forms.ModelForm):
     class Meta():
         model = FindMotorbike
-        fields = ('Origin', 'Destination',)
+        fields = ('Origin', 'Destination')
 
 
 class UserForm(forms.ModelForm):

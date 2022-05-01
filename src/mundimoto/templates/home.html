@@ -37,6 +37,14 @@
 
       </div>
     </div>
+
+
+    {% if submitbutton == "Submit" %} 
+      <h1> Your first name is {{ firstname }}</h1>
+      <h1> Your last name is {{ lastname }}</h1>
+      <h1> Your email is {{ emailvalue }} </h1>
+    {% endif %}
+
     <div class="col">
       <div class="right-path" style="margin-top: 200px;">
         <table class="table">
@@ -68,7 +76,7 @@
 
 {%if request.user.is_authenticated%}
   <div>
-    <a href="{% url 'TIMER' %}" class="previous round">START TRIP</a>
+    <a href="{% url 'index' %}" class="previous round">START TRIP</a>
   </div>
 {% endif %}
 

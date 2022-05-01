@@ -5,8 +5,11 @@ from django.contrib.auth.models import User
 class FindMotorbike(models.Model):
     Origin = models.CharField(blank=True, max_length=250)
     Destination = models.CharField(blank=True, max_length=250)
-    Fuel = models.CharField(blank=True, max_length=10000)
-
+    lat1 = models.FloatField(blank=True, null=True)
+    lat2 = models.FloatField(blank=True,null=True)
+    lon1 = models.FloatField(blank=True,null=True)
+    lon2 = models.FloatField(blank=True,null=True)
+##
 class Brands(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -28,7 +31,7 @@ class Clients(models.Model):
     email = models.CharField(max_length=50)
     dni = models.CharField(max_length=10)
     credit_card = models.BigIntegerField()
-    subscribed = models.BooleanField()
+    subscribed = models.BooleanField(null=True)
 
 
 class UserProfile(models.Model):
