@@ -14,7 +14,7 @@ import logging
 from django.contrib.auth.models import User  # new
 import urllib.parse
 from mundimoto.models import StripeCustomer  # new
-
+from geopy import  distance 
 from django.db import connection
 
 # Create your views here.
@@ -136,25 +136,60 @@ def Login(request):
 
 def formBike(request):
     find_form = forms.FindMotorbike()
+    # context = {
 
+    #     'brands':[],
+    #     'bikes':[]
+    # }
+    brands = []
+    bikes = []
     if request.POST:
         find_form = forms.FindMotorbike(data=request.POST)
     if find_form.is_valid():
+         
         address = find_form['Origin'].value()
         url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
         response = requests.get(url).json()
+        
 
 
         address = find_form['Destination'].value()
         url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
         response2 = requests.get(url).json()
-
-        #FindMotorbike.objects.raw('INSERT INTO mundimoto_findmotorbike column(lat1, lon1,lat2, lon2) VALUES(response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"] )')
-
         find_form.save()
-    brands = Brands.objects.filter(name="BMW")
-    bikes = Versions.objects.filter()
+        coords = response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"]
+
+        form_instance = find_form.instance
+        form_instance.lat1 = response[0]["lat"]
+        form_instance.lat2 = response[0]["lon"]
+        form_instance.lon1 = response2[0]["lat"]
+        form_instance.lon2 = response2[0]["lon"]
+
+        # FindMotorbike.objects.raw('INSERT INTO mundimoto_findmotorbike column(lat1, lon1,lat2, lon2) VALUES(response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"] )')
+        # print(find_form.fields)
+       
+        value_index = distance.distance((response[0]["lat"],response[0]["lon"]),(response2[0]["lat"],response2[0]["lon"])).km
+        if(value_index <50):
+            
+            bikes = Versions.objects.filter(possibleKm=1)
+        elif(value_index >=50 and value_index <200):
+            
+            bikes = Versions.objects.filter(possibleKm=2)
+        elif(value_index >=200 and value_index <400):
+           
+           bikes = Versions.objects.filter(possibleKm=3)
+        else:
+            
+            bikes = Versions.objects.filter(possibleKm=4)
+       # context['find_form'] = find_form
+       
+        
+  
+
+   
     return render(request, "home.html", {'form': find_form, 'brands': brands, 'bikes': bikes})
+
+    #return render(request, "home.html", context)
 
 
 def Register(request):

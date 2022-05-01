@@ -22,7 +22,7 @@ class Versions(models.Model):
     fuel = models.IntegerField()
     price = models.IntegerField()
     brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
-
+    possibleKm = models.IntegerField(null=True)
 
 class Clients(models.Model):
     contact_id = models.AutoField(primary_key=True)
