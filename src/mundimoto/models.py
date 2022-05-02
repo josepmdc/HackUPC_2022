@@ -2,14 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
 class FindMotorbike(models.Model):
     Origin = models.CharField(blank=True, max_length=250)
     Destination = models.CharField(blank=True, max_length=250)
     lat1 = models.FloatField(blank=True, null=True)
-    lat2 = models.FloatField(blank=True,null=True)
-    lon1 = models.FloatField(blank=True,null=True)
-    lon2 = models.FloatField(blank=True,null=True)
+    lat2 = models.FloatField(blank=True, null=True)
+    lon1 = models.FloatField(blank=True, null=True)
+    lon2 = models.FloatField(blank=True, null=True)
 ##
+
+
 class Brands(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -23,6 +26,7 @@ class Versions(models.Model):
     price = models.IntegerField()
     brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
     possibleKm = models.IntegerField(null=True)
+
 
 class Clients(models.Model):
     contact_id = models.AutoField(primary_key=True)
@@ -54,6 +58,7 @@ class Logs(models.Model):
     total_km = models.FloatField()
     fuel_level = models.FloatField()
 
+
 class RangeBike(models.Model):
     id = models.IntegerField(primary_key=True)
     cat = models.CharField(max_length=255)
@@ -61,11 +66,10 @@ class RangeBike(models.Model):
     high = models.IntegerField()
 
 
-
 class StripeCustomer(models.Model):
-    user = models.OneToOneField(to=User,on_delete=models.CASCADE)
-    stripeCustomerId = models.CharField(max_length = 255)
-    stripeSubscriptionId = models.CharField(max_length =255)
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    stripeCustomerId = models.CharField(max_length=255)
+    stripeSubscriptionId = models.CharField(max_length=255)
 
     def __str__(self):
         return self.user.username

@@ -9,15 +9,16 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt # new
+from django.views.decorators.csrf import csrf_exempt  # new
 import logging
 from django.contrib.auth.models import User  # new
 import urllib.parse
 from mundimoto.models import StripeCustomer  # new
-from geopy import  distance 
+from geopy import distance
 from django.db import connection
 
 # Create your views here.
+
 
 @login_required
 def user_logout(request):
@@ -25,12 +26,15 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('home'))
 
 # new
+
+
 @csrf_exempt
 def stripe_config(request):
     if request.method == 'GET':
         stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
         return JsonResponse(stripe_config, safe=False)
-    
+
+
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
@@ -39,7 +43,7 @@ def create_checkout_session(request):
         try:
             checkout_session = stripe.checkout.Session.create(
                 client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url= 'http://localhost:8000/login',
+                success_url='http://localhost:8000/login',
                 cancel_url=domain_url + 'cancel/',
                 payment_method_types=['card'],
                 mode='subscription',
@@ -51,8 +55,8 @@ def create_checkout_session(request):
                 ]
             )
 
-            return redirect(checkout_session.url,code=303)
-            #return JsonResponse({'sessionId': checkout_session['id']})
+            return redirect(checkout_session.url, code=303)
+            # return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
 
@@ -65,9 +69,11 @@ def success(request):
 @login_required
 def cancel(request):
     return render(request, 'cancel.html')
-    
-def handle_not_found(request,exception):
-    return render(request,'error.html')
+
+
+def handle_not_found(request, exception):
+    return render(request, 'error.html')
+
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -107,7 +113,7 @@ def stripe_webhook(request):
         print(user.username + ' just subscribed.')
 
     return HttpResponse(reverse('success'))
-    
+
 
 def index(request):
     latest_question_list = ["1. asdf", "2. asdf", "3. asdf"]
@@ -124,14 +130,14 @@ def home(request):
     logger.info('here goes your message')
     return render(request, 'home.html')
 
+
 def explanation(request):
     return render(request, 'explanation.html')
 
-    
+
 def Login(request):
 
     return render(request, "Login.html")
-
 
 
 def formBike(request):
@@ -146,18 +152,18 @@ def formBike(request):
     if request.POST:
         find_form = forms.FindMotorbike(data=request.POST)
     if find_form.is_valid():
-         
-        address = find_form['Origin'].value()
-        url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
-        response = requests.get(url).json()
-        
 
+        address = find_form['Origin'].value()
+        url = 'https://nominatim.openstreetmap.org/search/' + \
+            urllib.parse.quote(address) + '?format=json'
+        response = requests.get(url).json()
 
         address = find_form['Destination'].value()
-        url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
+        url = 'https://nominatim.openstreetmap.org/search/' + \
+            urllib.parse.quote(address) + '?format=json'
         response2 = requests.get(url).json()
         find_form.save()
-        coords = response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"]
+        coords = response[0]["lat"], response[0]["lon"], response2[0]["lat"], response2[0]["lon"]
 
         form_instance = find_form.instance
         form_instance.lat1 = response[0]["lat"]
@@ -167,29 +173,26 @@ def formBike(request):
 
         # FindMotorbike.objects.raw('INSERT INTO mundimoto_findmotorbike column(lat1, lon1,lat2, lon2) VALUES(response[0]["lat"],response[0]["lon"],response2[0]["lat"], response2[0]["lon"] )')
         # print(find_form.fields)
-       
-        value_index = distance.distance((response[0]["lat"],response[0]["lon"]),(response2[0]["lat"],response2[0]["lon"])).km
-        if(value_index <50):
-            
+
+        value_index = distance.distance(
+            (response[0]["lat"], response[0]["lon"]), (response2[0]["lat"], response2[0]["lon"])).km
+        if(value_index < 50):
+
             bikes = Versions.objects.filter(possibleKm=1)
-        elif(value_index >=50 and value_index <200):
-            
+        elif(value_index >= 50 and value_index < 200):
+
             bikes = Versions.objects.filter(possibleKm=2)
-        elif(value_index >=200 and value_index <400):
-           
-           bikes = Versions.objects.filter(possibleKm=3)
+        elif(value_index >= 200 and value_index < 400):
+
+            bikes = Versions.objects.filter(possibleKm=3)
         else:
-            
+
             bikes = Versions.objects.filter(possibleKm=4)
        # context['find_form'] = find_form
-       
-        
-  
 
-   
     return render(request, "home.html", {'form': find_form, 'brands': brands, 'bikes': bikes})
 
-    #return render(request, "home.html", context)
+    # return render(request, "home.html", context)
 
 
 def Register(request):
@@ -209,7 +212,7 @@ def Register(request):
 
             registered = True
             login(request, user)
-            return  redirect('/create-checkout-session/')
+            return redirect('/create-checkout-session/')
         else:
             print("ERROR")
             messages.error(request, "Username already Exists")
